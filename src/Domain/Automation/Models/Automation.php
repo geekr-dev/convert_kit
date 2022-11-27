@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Automation\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Domain\Shared\Models\BaseModel;
 
-class Automation extends Model
+class Automation extends BaseModel
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *

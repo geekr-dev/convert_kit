@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Domain\Shared\Models\BaseModel;
 
-class Broadcast extends Model
+class Sequence extends BaseModel
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -16,10 +13,7 @@ class Broadcast extends Model
      */
     protected $fillable = [
         'title',
-        'content',
-        'filters',
         'status',
-        'sent_at',
     ];
 
     /**
@@ -29,13 +23,10 @@ class Broadcast extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'filters' => 'array',
-        'sent_at' => 'timestamp',
     ];
 
-    public function sentMails()
+    public function sequenceMails()
     {
-        return $this->morphMany(SentMail::class, 'sendable');
+        return $this->hasMany(SequenceMail::class);
     }
-    
 }

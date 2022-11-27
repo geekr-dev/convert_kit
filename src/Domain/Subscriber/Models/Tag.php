@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Subscriber\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Domain\Shared\Models\BaseModel;
 
-class Sequence extends Model
+class Tag extends BaseModel
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -16,7 +13,6 @@ class Sequence extends Model
      */
     protected $fillable = [
         'title',
-        'status',
     ];
 
     /**
@@ -28,8 +24,8 @@ class Sequence extends Model
         'id' => 'integer',
     ];
 
-    public function sequenceMails()
+    public function subscribers()
     {
-        return $this->hasMany(SequenceMail::class);
+        return $this->belongsToMany(Subscriber::class);
     }
 }

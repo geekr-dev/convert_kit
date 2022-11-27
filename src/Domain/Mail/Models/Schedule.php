@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Mail\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Domain\Shared\Models\BaseModel;
 
-class Tag extends Model
+class Schedule extends BaseModel
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title',
+        'delay',
+        'unit',
+        'allowed_days',
     ];
 
     /**
@@ -25,10 +24,11 @@ class Tag extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'allowed_days' => 'array',
     ];
 
-    public function subscribers()
+    public function sequenceMails()
     {
-        return $this->belongsToMany(Subscriber::class);
+        return $this->hasMany(SequenceMail::class);
     }
 }
