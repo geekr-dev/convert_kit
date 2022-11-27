@@ -1,0 +1,43 @@
+created:
+    - database/factories/SubscriberFactory.php
+    - database/factories/TagFactory.php
+    - database/factories/FormFactory.php
+    - database/factories/BroadcastFactory.php
+    - database/factories/SequenceFactory.php
+    - database/factories/SequenceMailFactory.php
+    - database/factories/ScheduleFactory.php
+    - database/factories/SentMailFactory.php
+    - database/factories/AutomationFactory.php
+    - database/factories/AutomationStepFactory.php
+    - database/migrations/2022_11_27_153011_create_subscribers_table.php
+    - database/migrations/2022_11_27_153012_create_tags_table.php
+    - database/migrations/2022_11_27_153013_create_forms_table.php
+    - database/migrations/2022_11_27_153014_create_broadcasts_table.php
+    - database/migrations/2022_11_27_153015_create_sequences_table.php
+    - database/migrations/2022_11_27_153016_create_sequence_mails_table.php
+    - database/migrations/2022_11_27_153017_create_schedules_table.php
+    - database/migrations/2022_11_27_153018_create_sent_mails_table.php
+    - database/migrations/2022_11_27_153019_create_automations_table.php
+    - database/migrations/2022_11_27_153020_create_automation_steps_table.php
+    - database/migrations/2022_11_27_153021_create_subscriber_tag_table.php
+    - app/Models/Subscriber.php
+    - app/Models/Tag.php
+    - app/Models/Form.php
+    - app/Models/Broadcast.php
+    - app/Models/Sequence.php
+    - app/Models/SequenceMail.php
+    - app/Models/Schedule.php
+    - app/Models/SentMail.php
+    - app/Models/Automation.php
+    - app/Models/AutomationStep.php
+models:
+    Subscriber: { email: 'string:50 unique', first_name: 'string:50', last_name: 'string:50', relationships: { belongsTo: Form, hasMany: SentMail, belongsToMany: Tag } }
+    Tag: { title: 'string:50', relationships: { belongsToMany: Subscriber } }
+    Form: { title: 'string:100', content: longtext, relationships: { hasMany: Subscriber } }
+    Broadcast: { title: 'string:100', content: longtext, filters: json, status: 'enum:draft,published', sent_at: 'timestamp nullable' }
+    Sequence: { title: 'string:100', status: 'enum:draft,published', relationships: { hasMany: SequenceMail } }
+    SequenceMail: { subject: 'string:100', status: 'enum:draft,published', content: longtext, filters: json, sequence_id: 'bigInteger unsigned', schedule_id: 'bigInteger unsigned', relationships: { belongsTo: 'Sequence, Schedule' } }
+    Schedule: { delay: 'integer unsigned', unit: 'enum:hour,day', allowed_days: json, relationships: { hasMany: SequenceMail } }
+    SentMail: { sendable_id: 'bigInteger unsigned', sendable_type: 'string:100', subscriber_id: 'bigInteger unsigned', sent_at: 'timestamp nullable', opened_at: 'timestamp nullable', clicked_at: 'timestamp nullable', relationships: { belongsTo: Subscriber } }
+    Automation: { name: 'string:100', relationships: { hasMany: AutomationStep } }
+    AutomationStep: { automation_id: 'bigInteger unsigned', type: 'enum:type,action', name: 'string:50', value: json, relationships: { belongsTo: Automation } }
