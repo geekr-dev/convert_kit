@@ -15,6 +15,8 @@ class Subscriber extends BaseModel
         'email',
         'first_name',
         'last_name',
+        'form_id',
+        'user_id',
     ];
 
     /**
@@ -28,7 +30,7 @@ class Subscriber extends BaseModel
 
     public function form()
     {
-        return $this->belongsTo(Form::class);
+        return $this->belongsTo(Form::class)->withDefault();
     }
 
     public function sentMails()
