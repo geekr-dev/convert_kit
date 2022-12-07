@@ -1,5 +1,7 @@
 <?php
 
+namespace Domain\Subscriber\ViewModels;
+
 use Domain\Shared\ViewModels\ViewModel;
 use Domain\Subscriber\DTOs\FormData;
 use Domain\Subscriber\DTOs\SubscriberData;

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Web\Controller\Subscriber;
+namespace App\Http\Web\Controllers\Subscriber;
 
 use Domain\Subscriber\Actions\UpsertSubscriberAction;
 use Domain\Subscriber\DTOs\SubscriberData;
 use Domain\Subscriber\Models\Subscriber;
+use Domain\Subscriber\ViewModels\UpsertSubscriberViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-use UpsertSubscriberViewModel;
 
 class SubscriberController
 {
