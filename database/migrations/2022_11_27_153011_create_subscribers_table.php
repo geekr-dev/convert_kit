@@ -15,10 +15,15 @@ class CreateSubscribersTable extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('email', 50)->unique();
             $table->string('first_name', 50);
             $table->string('last_name', 50);
+            $table->foreignId('form_id')->nullable()->constrained()->nullOnDelete();
+            $table->dateTime('subscribed_at')->useCurrent();
             $table->timestamps();
+
+            $table->unique(['user_id', 'email']);
         });
     }
 

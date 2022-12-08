@@ -2,12 +2,15 @@
 
 namespace Domain\Subscriber\DTOs;
 
+use Carbon\Carbon;
 use Domain\Subscriber\Models\Form;
+use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Lazy;
 
 class SubscriberData extends Data
 {
@@ -17,8 +20,9 @@ class SubscriberData extends Data
         public readonly string $first_name,
         public readonly ?string $last_name,
         /** @var DataCollection<TagData> */
-        public readonly ?DataCollection $tags,
-        public readonly ?FormData $form,
+        public readonly null|Lazy|DataCollection $tags,
+        public readonly null|Lazy|FormData $form,
+        public readonly ?Carbon $subscribed_at,
     ) {
     }
 
@@ -54,6 +58,24 @@ class SubscriberData extends Data
             ),
             'form' => FormData::from(
                 Form::findOrNew($request->form_id)
+            ),
+        ]);
+    }
+
+    public static function fromModel(Subscriber $subscriber): self
+    {
+        return self::from([
+            ...$subscriber->toArray(),
+            'full_name' => $subscriber->full_name,
+            'tags' => Lazy::whenLoaded(
+                'tags',
+                $subscriber,
+                fn () => TagData::collection($subscriber->tags)
+            ),
+            'form' => Lazy::whenLoaded(
+                'form',
+                $subscriber,
+                fn () =>  FormData::from($subscriber->form)
             ),
         ]);
     }

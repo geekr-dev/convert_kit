@@ -3,9 +3,13 @@
 namespace Domain\Subscriber\Models;
 
 use Domain\Shared\Models\BaseModel;
+use Domain\Shared\Models\Concerns\HasUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Subscriber extends BaseModel
 {
+    use HasUser;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +45,12 @@ class Subscriber extends BaseModel
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function fullName(): Attribute
+    {
+        return new Attribute(
+            get: fn () => "{$this->first_name} {$this->last_name}",
+        );
     }
 }

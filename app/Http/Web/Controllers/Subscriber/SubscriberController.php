@@ -5,6 +5,7 @@ namespace App\Http\Web\Controllers\Subscriber;
 use Domain\Subscriber\Actions\UpsertSubscriberAction;
 use Domain\Subscriber\DTOs\SubscriberData;
 use Domain\Subscriber\Models\Subscriber;
+use Domain\Subscriber\ViewModels\GetSubscribersViewModel;
 use Domain\Subscriber\ViewModels\UpsertSubscriberViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -18,9 +19,11 @@ class SubscriberController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return Inertia::render('Subscriber/List', [
+            'model' => new GetSubscribersViewModel($request->get('page', 1)),
+        ]);
     }
 
     /**
