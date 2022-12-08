@@ -2,9 +2,8 @@
 
 namespace Database\Factories\Subscriber;
 
+use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Subscriber;
 
 class SubscriberFactory extends Factory
 {

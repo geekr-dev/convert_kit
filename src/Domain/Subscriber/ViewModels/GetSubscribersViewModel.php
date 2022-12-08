@@ -3,7 +3,6 @@
 namespace Domain\Subscriber\ViewModels;
 
 use Domain\Shared\ViewModels\ViewModel;
-use Domain\Subscriber\DTOs\SubscriberData;
 use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Contracts\Pagination\Paginator as PaginatorContract;
@@ -24,8 +23,7 @@ class GetSubscribersViewModel extends ViewModel
             ->orderBy('first_name')
             ->get()
             ->map(
-                fn (Subscriber $subscriber) =>
-                SubscriberData::from($subscriber)
+                fn (Subscriber $subscriber) => $subscriber->getData()
             );
 
         $items = $items->slice(

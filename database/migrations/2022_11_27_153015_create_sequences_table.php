@@ -16,7 +16,7 @@ class CreateSequencesTable extends Migration
         Schema::create('sequences', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->enum('status', ["draft","published"]);
+            $table->enum('status', ["draft", "published"]);
             $table->timestamps();
         });
     }

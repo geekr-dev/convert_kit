@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Web\Controllers\Subscriber\SubscriberController;
+use App\Http\Api\Controllers\Subscriber\CreateSubscriberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 });
+
+Route::post('subscribers', CreateSubscriberController::class);

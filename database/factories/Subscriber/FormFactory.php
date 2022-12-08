@@ -2,9 +2,8 @@
 
 namespace Database\Factories\Subscriber;
 
+use Domain\Subscriber\Models\Form;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Form;
 
 class FormFactory extends Factory
 {

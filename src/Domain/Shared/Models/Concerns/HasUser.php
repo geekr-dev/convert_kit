@@ -15,6 +15,6 @@ trait HasUser
 
     protected static function booted()
     {
-        static::addGlobalScope(UserScope::class);
+        static::addGlobalScope(new UserScope());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Shared\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

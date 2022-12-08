@@ -4,11 +4,16 @@ namespace Domain\Subscriber\Models;
 
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
+use Domain\Subscriber\DTOs\SubscriberData;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Spatie\LaravelData\WithData;
 
 class Subscriber extends BaseModel
 {
     use HasUser;
+    use WithData;
+
+    protected $dataClass = SubscriberData::class;
 
     /**
      * The attributes that are mass assignable.
@@ -30,6 +35,7 @@ class Subscriber extends BaseModel
      */
     protected $casts = [
         'id' => 'integer',
+        'subscribed_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     public function form()

@@ -2,9 +2,8 @@
 
 namespace Database\Factories\Subscriber;
 
+use Domain\Subscriber\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Tag;
 
 class TagFactory extends Factory
 {
@@ -23,7 +22,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(4),
+            'title' => $this->faker->word,
         ];
     }
 }

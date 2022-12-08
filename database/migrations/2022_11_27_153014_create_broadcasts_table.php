@@ -18,7 +18,7 @@ class CreateBroadcastsTable extends Migration
             $table->string('title', 100);
             $table->longText('content');
             $table->json('filters');
-            $table->enum('status', ["draft","published"]);
+            $table->enum('status', ["draft", "published"]);
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });

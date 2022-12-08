@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Domain\Subscriber\Models\Form;
 use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
@@ -19,10 +20,11 @@ class SubscriberData extends Data
         public readonly string $email,
         public readonly string $first_name,
         public readonly ?string $last_name,
+        public readonly ?string $full_name,
+        public readonly ?string $subscribed_at,
         /** @var DataCollection<TagData> */
         public readonly null|Lazy|DataCollection $tags,
         public readonly null|Lazy|FormData $form,
-        public readonly ?Carbon $subscribed_at,
     ) {
     }
 
