@@ -15,10 +15,11 @@ class CreateBroadcastsTable extends Migration
     {
         Schema::create('broadcasts', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('title', 100);
             $table->longText('content');
             $table->json('filters');
-            $table->enum('status', ["draft", "published"]);
+            $table->enum('status', ["draft", "sent"]);
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });

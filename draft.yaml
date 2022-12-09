@@ -4,7 +4,7 @@ models:
     first_name: string:50
     last_name: string:50
     relationships:
-      belongsTo: Form
+      belongsTo: Form,User
       hasMany: SentMail
       belongsToMany: Tag
   Tag:
@@ -20,8 +20,10 @@ models:
     title: string:100
     content: longtext
     filters: json
-    status: enum:draft,published
+    status: enum:draft,sent
     sent_at: timestamp nullable
+    relationships:
+      belongsTo: User
   Sequence:
     title: string:100
     status: enum:draft,published
