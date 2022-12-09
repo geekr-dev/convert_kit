@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Web\Controllers\Subscriber\ImportSubscribersController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,9 +30,15 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource(
-    'subscribers',
-    SubscriberController::class
-);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource(
+        'subscribers',
+        SubscriberController::class
+    );
+
+    Route::post('subscribers/import', ImportSubscribersController::class);
+});
+
+
 
 require __DIR__ . '/auth.php';

@@ -2,11 +2,9 @@
 
 namespace Domain\Subscriber\DTOs;
 
-use Carbon\Carbon;
 use Domain\Subscriber\Models\Form;
 use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
-use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;

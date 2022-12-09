@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca2fed29641c8548f93be494413555ae",
+    "content-hash": "ed893fc3f5a10ba6ecfde4b4986eb4b3",
     "packages": [
         {
             "name": "brick/math",
@@ -6021,6 +6021,64 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.5"
             },
             "time": "2022-09-12T13:28:28+00:00"
+        },
+        {
+            "name": "timacdonald/json-api",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timacdonald/json-api.git",
+                "reference": "c3f89eef3e6c3e6b4f46321211543acc99f5134f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timacdonald/json-api/zipball/c3f89eef3e6c3e6b4f46321211543acc99f5134f",
+                "reference": "c3f89eef3e6c3e6b4f46321211543acc99f5134f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/framework": "^8.0 || ^9.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TiMacDonald\\JsonApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tim MacDonald",
+                    "email": "hello@timacdonald.me",
+                    "homepage": "https://timacdonald.me"
+                }
+            ],
+            "description": "A Lightweight JSON:API Resource for Laravel",
+            "keywords": [
+                "JSON-API",
+                "json api",
+                "jsonapi",
+                "laravel"
+            ],
+            "support": {
+                "docs": "https://github.com/timacdonald/json-api/blob/master/readme.md",
+                "issues": "https://github.com/timacdonald/json-api/issues",
+                "source": "https://github.com/timacdonald/json-api/releases/latest"
+            },
+            "time": "2022-02-17T10:00:59+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
