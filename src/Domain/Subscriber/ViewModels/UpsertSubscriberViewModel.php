@@ -27,6 +27,7 @@ class UpsertSubscriberViewModel extends ViewModel
             $this->subscriber->load('tags', 'form')
         );
     }
+
     /**
      * @return Collection<TagData>
      */

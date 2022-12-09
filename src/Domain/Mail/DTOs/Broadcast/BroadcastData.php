@@ -8,7 +8,7 @@ use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\WithCast;
 
-class Broadcast extends Data
+class BroadcastData extends Data
 {
     public function __construct(
         private readonly ?int $id,

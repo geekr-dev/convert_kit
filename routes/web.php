@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Web\Controllers\Mail\BroadcastController;
 use App\Http\Web\Controllers\Subscriber\ImportSubscribersController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Foundation\Application;
@@ -31,12 +32,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource(
-        'subscribers',
-        SubscriberController::class
-    );
-
+    Route::resource('subscribers', SubscriberController::class);
     Route::post('subscribers/import', ImportSubscribersController::class);
+
+    Route::resource('broadcasts', BroadcastController::class);
 });
 
 
