@@ -3,6 +3,7 @@
 namespace Domain\Mail\Models;
 
 use Domain\Shared\Models\BaseModel;
+use Domain\Subscriber\Models\Subscriber;
 
 class SentMail extends BaseModel
 {

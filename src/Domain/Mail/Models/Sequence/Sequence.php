@@ -1,11 +1,10 @@
 <?php
 
-namespace Domain\Mail\Models;
+namespace Domain\Mail\Models\Sequence;
 
-use Domain\Mail\Models\Sequence\SequenceMail;
 use Domain\Shared\Models\BaseModel;
 
-class Schedule extends BaseModel
+class Sequence extends BaseModel
 {
     /**
      * The attributes that are mass assignable.
@@ -13,9 +12,8 @@ class Schedule extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'delay',
-        'unit',
-        'allowed_days',
+        'title',
+        'status',
     ];
 
     /**
@@ -25,7 +23,6 @@ class Schedule extends BaseModel
      */
     protected $casts = [
         'id' => 'integer',
-        'allowed_days' => 'array',
     ];
 
     public function sequenceMails()

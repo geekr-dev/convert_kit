@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Mail\Models\Broadcast;
 
+use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 
-class Sequence extends BaseModel
+class Broadcast extends BaseModel
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +14,10 @@ class Sequence extends BaseModel
      */
     protected $fillable = [
         'title',
+        'content',
+        'filters',
         'status',
+        'sent_at',
     ];
 
     /**
@@ -23,10 +27,12 @@ class Sequence extends BaseModel
      */
     protected $casts = [
         'id' => 'integer',
+        'filters' => 'array',
+        'sent_at' => 'timestamp',
     ];
 
-    public function sequenceMails()
+    public function sentMails()
     {
-        return $this->hasMany(SequenceMail::class);
+        return $this->morphMany(SentMail::class, 'sendable');
     }
 }
