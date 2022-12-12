@@ -2,6 +2,7 @@
 
 namespace Domain\Mail\Models\Broadcast;
 
+use Domain\Mail\Builders\Broadcast\BroadcastBuilder;
 use Domain\Mail\DTOs\Broadcast\BroadcastData;
 use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
@@ -58,4 +59,9 @@ class Broadcast extends BaseModel
             set: fn (FilterData $value) => json_encode($value),
         );
     }*/
+
+    public function newEloquentBuilder($query): BroadcastBuilder
+    {
+        return new BroadcastBuilder($query);
+    }
 }

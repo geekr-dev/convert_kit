@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Web\Controllers\Mail\BroadcastController;
+use App\Http\Web\Controllers\Mail\SendBroadcastController;
 use App\Http\Web\Controllers\Subscriber\ImportSubscribersController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
+use Domain\Mail\Jobs\Broadcast\SendBroadcastJob;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('subscribers/import', ImportSubscribersController::class);
 
     Route::resource('broadcasts', BroadcastController::class);
+    Route::post('broadcasts/{broadcast}/send', SendBroadcastController::class);
 });
 
 

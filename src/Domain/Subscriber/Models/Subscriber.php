@@ -6,10 +6,12 @@ use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
 use Domain\Subscriber\DTOs\SubscriberData;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Notifications\Notifiable;
 use Spatie\LaravelData\WithData;
 
 class Subscriber extends BaseModel
 {
+    use Notifiable;
     use HasUser;
     use WithData;
 
