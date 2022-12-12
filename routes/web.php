@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Web\Controllers\Mail\BroadcastController;
+use App\Http\Web\Controllers\Mail\PreviewBroadcastController;
 use App\Http\Web\Controllers\Mail\SendBroadcastController;
 use App\Http\Web\Controllers\Subscriber\ImportSubscribersController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('broadcasts', BroadcastController::class);
     Route::post('broadcasts/{broadcast}/send', SendBroadcastController::class);
+    Route::post('broadcasts/{broadcast}/preview', PreviewBroadcastController::class);
 });
 
 
