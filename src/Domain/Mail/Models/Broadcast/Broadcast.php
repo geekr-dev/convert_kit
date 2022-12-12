@@ -2,6 +2,7 @@
 
 namespace Domain\Mail\Models\Broadcast;
 
+use Domain\Mail\DTOs\Broadcast\BroadcastData;
 use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FilterCast;
@@ -15,6 +16,8 @@ class Broadcast extends BaseModel
 {
     use WithData;
     use HasUser;
+
+    protected $dataClass = BroadcastData::class;
 
     /**
      * The attributes that are mass assignable.

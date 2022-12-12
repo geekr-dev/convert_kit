@@ -6,6 +6,7 @@ use Domain\Mail\Actions\Broadcast\UpsertBroadcastAction;
 use Domain\Mail\DTOs\Broadcast\BroadcastData;
 use Domain\Mail\Models\Broadcast\Broadcast;
 use Domain\Mail\ViewModels\Broadcast\GetBroadcastsViewModel;
+use Domain\Mail\ViewModels\Broadcast\UpsertBroadcastViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -33,7 +34,7 @@ class BroadcastController
     public function create(): Response
     {
         return Inertia::render('Broadcast/Form', [
-            'model' => new UpsertBroadcastAction(),
+            'model' => new UpsertBroadcastViewModel(),
         ]);
     }
 
@@ -69,7 +70,7 @@ class BroadcastController
     public function edit(Broadcast $broadcast): Response
     {
         return Inertia::render('Broadcast/Form', [
-            'model' => new UpsertBroadcastAction($broadcast)
+            'model' => new UpsertBroadcastViewModel($broadcast)
         ]);
     }
 

@@ -3,12 +3,12 @@
 namespace Domain\Mail\ViewModels\Broadcast;
 
 use Domain\Mail\DTOs\Broadcast\BroadcastData;
-use Domain\Mail\ViewModels\Concerns\HasForms;
-use Domain\Mail\ViewModels\Concerns\HasTags;
 use Domain\Shared\ViewModels\ViewModel;
 use Domain\Mail\Models\Broadcast\Broadcast;
+use Domain\Shared\ViewModels\Concerns\HasForms;
+use Domain\Shared\ViewModels\Concerns\HasTags;
 
-class UpsertSubscriberViewModel extends ViewModel
+class UpsertBroadcastViewModel extends ViewModel
 {
     use HasForms;
     use HasTags;
@@ -18,9 +18,9 @@ class UpsertSubscriberViewModel extends ViewModel
     ) {
     }
 
-    public function broadcast(): BroadcastData
+    public function broadcast(): ?BroadcastData
     {
-        if (!$this->broadcast()) {
+        if (!$this->broadcast) {
             return null;
         }
 

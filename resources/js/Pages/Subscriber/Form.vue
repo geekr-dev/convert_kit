@@ -8,6 +8,7 @@ import TextInput from '@/Components/TextInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { computed, onMounted } from '@vue/runtime-core';
+import { formatMessages } from 'esbuild';
 
 let props = defineProps({
     model: {
@@ -16,20 +17,35 @@ let props = defineProps({
     }
 });
 
-let headTitle = computed(() => { return props.model.id > 0 ? "Create Subscriber" : "Edit Subscriber #" + props.model.id; })
+let headTitle = computed(() => { return this.model.subscriber.id > 0 ? "Create Subscriber" : "Edit Subscriber #" + this.model.subscriber.id; })
 
 const form = useForm({
-    id: props.model.id,
-    first_name: props.model.first_name,
-    last_name: props.model.last_name,
-    email: props.model.email,
-    form_id: props.model.form_id,
-    tag_ids: props.model.tag_ids,
+    id: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+    form_id: null,
+    tag_ids: null,
+    forms: null,
+    tags: null,
 });
 
+if (props.model.subscriber) {
+    form = {
+        id: props.model.subscriber.id,
+        first_name: props.model.subscriber.first_name,
+        last_name: props.model.subscriber.last_name,
+        email: props.model.subscriber.email,
+        form_id: props.model.subscriber.form_id,
+        tag_ids: props.model.subscriber.tag_ids,
+        forms: props.model.forms,
+        tags: props.model.tags,
+    }
+}
+
 const submit = () => {
-    if (props.model.id > 0) {
-        form.put(route('subscribers.update', { "subscriber": props.model.id }))
+    if (this.model.subscriber.id > 0) {
+        form.put(route('subscribers.update', this.model.subscriber.id))
     } else {
         form.post(route('subscribers.store'));
     }

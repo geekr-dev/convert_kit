@@ -21,9 +21,6 @@ export default {
             selected: this.modelValue,
         }
     },
-    mounted: () => {
-        console.log("is_multiple:" + this.isMultiple);
-    },
     watch: {
         selected(selected) {
             this.$emit('update:modelValue', selected)

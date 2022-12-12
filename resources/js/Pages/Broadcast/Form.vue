@@ -17,19 +17,29 @@ let props = defineProps({
     }
 });
 
-let headTitle = computed(() => { return props.model.id > 0 ? "Create Broadcast" : "Edit Broadcast #" + props.model.id; })
+let headTitle = computed(() => { return this.model.broadcast.id > 0 ? "Create Broadcast" : "Edit Broadcast #" + this.model.broadcast.id; })
 
 const form = useForm({
-    id: props.model.id,
-    subject: props.model.subject,
-    content: props.model.content,
-    form_ids: props.model.form_ids,
-    tag_ids: props.model.tag_ids,
+    id: null,
+    subject: null,
+    content: null,
+    forms: null,
+    tags: null,
 });
 
+if (props.model.broadcast) {
+    form = {
+        id: props.model.broadcast.id,
+        subject: props.model.broadcast.subject,
+        content: props.model.broadcast.content,
+        forms: props.model.forms,
+        tags: props.model.tags,
+    };
+}
+
 const submit = () => {
-    if (props.model.id > 0) {
-        form.put(route('broadcasts.update', props.model.id))
+    if (this.model.broadcast.id > 0) {
+        form.put(route('broadcasts.update', this.model.broadcast.id))
     } else {
         form.post(route('broadcasts.store'));
     }
