@@ -3,6 +3,7 @@
 namespace Domain\Mail\Models\Broadcast;
 
 use Domain\Mail\Builders\Broadcast\BroadcastBuilder;
+use Domain\Mail\Contracts\Sendable;
 use Domain\Mail\DTOs\Broadcast\BroadcastData;
 use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
@@ -13,7 +14,7 @@ use Domain\Shared\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Spatie\LaravelData\WithData;
 
-class Broadcast extends BaseModel
+class Broadcast extends BaseModel implements Sendable
 {
     use WithData;
     use HasUser;
@@ -46,6 +47,16 @@ class Broadcast extends BaseModel
     protected $attributes = [
         'status' => BroadcastStatus::Draft,  // 默认值
     ];
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function type(): string
+    {
+        return $this::class;
+    }
 
     public function sentMails()
     {

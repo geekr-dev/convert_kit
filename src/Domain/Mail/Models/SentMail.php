@@ -2,6 +2,7 @@
 
 namespace Domain\Mail\Models;
 
+use Domain\Mail\Builders\SentMail\SentMailBuilder;
 use Domain\Shared\Models\BaseModel;
 use Domain\Subscriber\Models\Subscriber;
 
@@ -38,5 +39,10 @@ class SentMail extends BaseModel
     public function subscriber()
     {
         return $this->belongsTo(Subscriber::class);
+    }
+
+    public function newEloquentBuilder($query): SentMailBuilder
+    {
+        return new SentMailBuilder($query);
     }
 }
