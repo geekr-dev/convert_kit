@@ -1,7 +1,8 @@
 <?php
 
-namespace Domain\Mail\Models;
+namespace Domain\Mail\Models\Sequence;
 
+use Domain\Mail\Models\Casts\Sequence\SequenceMailScheduleAllowedDaysCast;
 use Domain\Mail\Models\Sequence\SequenceMail;
 use Domain\Shared\Models\BaseModel;
 
@@ -24,8 +25,7 @@ class Schedule extends BaseModel
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'allowed_days' => 'array',
+        'allowed_days' => SequenceMailScheduleAllowedDaysCast::class,
     ];
 
     public function sequenceMails()

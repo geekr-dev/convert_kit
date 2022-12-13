@@ -32,7 +32,7 @@ class SendBroadcastAction
         // 记录所有发送记录
         return $subscribers->each(
             fn (Subscriber $subscriber) =>
-            $broadcast->sent_mails()->create([
+            $broadcast->sentMails()->create([
                 'subscriber_id' => $subscriber->id,
                 'user_id' => $broadcast->user->id,
             ])

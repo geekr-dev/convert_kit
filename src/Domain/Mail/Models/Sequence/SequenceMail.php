@@ -2,14 +2,19 @@
 
 namespace Domain\Mail\Models\Sequence;
 
+use Domain\Mail\Builders\Sequence\SequenceMailBuilder;
+use Domain\Mail\Contracts\Sendable;
+use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\DTOs\Sequence\SequenceMailData;
 use Domain\Mail\Enums\Sequence\SequenceMailStatus;
 use Domain\Mail\Models\Casts\FilterCast;
+use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
 use Spatie\LaravelData\WithData;
+use Illuminate\Support\Str;
 
-class SequenceMail extends BaseModel
+class SequenceMail extends BaseModel implements Sendable
 {
     use WithData, HasUser;
 
@@ -36,9 +41,34 @@ class SequenceMail extends BaseModel
         'status' => SequenceMailStatus::class,
     ];
 
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function type(): string
+    {
+        return $this::class;
+    }
+
+    public function subject(): string
+    {
+        return $this->subject;
+    }
+
+    public function content(): string
+    {
+        return $this->content;
+    }
+
     public function sequence()
     {
         return $this->belongsTo(Sequence::class);
+    }
+
+    public function filters(): FilterData
+    {
+        return $this->filters;
     }
 
     public function schedule()
@@ -49,5 +79,22 @@ class SequenceMail extends BaseModel
     public function sentMails()
     {
         return $this->morphMany(SentMail::class, 'sendable');
+    }
+
+    public function shouldSendToday(): bool
+    {
+        $dayName = Str::lower(now()->dayName);
+        return $this->schedule->allowed_days->{$dayName};
+    }
+
+    public function enoughTimePassedSince(SentMail $mail): bool
+    {
+        return $this->schedule->unit
+            ->timePassSince($mail->sent_at) >= $this->schedule->delay;
+    }
+
+    public function newEloquentBuilder($query): SequenceMailBuilder
+    {
+        return new SequenceMailBuilder($query);
     }
 }

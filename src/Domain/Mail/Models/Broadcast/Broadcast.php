@@ -68,6 +68,10 @@ class Broadcast extends BaseModel implements Sendable
         return $this->content;
     }
 
+    public function filters(): FilterData
+    {
+        return $this->filters;
+    }
 
     public function sentMails()
     {

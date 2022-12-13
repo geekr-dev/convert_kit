@@ -31,7 +31,7 @@ models:
       hasMany: SequenceMail, Subscriber
   SequenceMail:
     subject: string:100
-    status: enum:draft,sent
+    status: enum:draft,published
     content: longtext
     filters: json
     sequence_id: bigInteger unsigned

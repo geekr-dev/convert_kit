@@ -2,8 +2,7 @@
 
 namespace Domain\Mail\Contracts;
 
-use Dotenv\Util\Str;
-use PhpParser\Node\Expr\Cast\String_;
+use Domain\Mail\DTOs\FilterData;
 
 interface Sendable
 {
@@ -11,4 +10,5 @@ interface Sendable
     public function type(): string;
     public function subject(): string;
     public function content(): String;
+    public function filters(): FilterData;
 }

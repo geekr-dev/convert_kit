@@ -23,7 +23,7 @@ class Sequence extends BaseModel
         'title',
     ];
 
-    public function sequenceMails()
+    public function mails()
     {
         return $this->hasMany(SequenceMail::class);
     }
