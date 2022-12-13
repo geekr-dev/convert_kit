@@ -1,5 +1,6 @@
 <?php
 
+use Domain\Shared\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateSequencesTable extends Migration
         Schema::create('sequences', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->enum('status', ["draft", "published"]);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ models:
     relationships:
       belongsTo: Form,User
       hasMany: SentMail
-      belongsToMany: Tag
+      belongsToMany: Tag, Sequence
   Tag:
     title: string:50
     relationships:
@@ -26,19 +26,18 @@ models:
       belongsTo: User
   Sequence:
     title: string:100
-    status: enum:draft,published
     relationships:
       belongsTo: User
-      hasMany: SequenceMail
+      hasMany: SequenceMail, Subscriber
   SequenceMail:
     subject: string:100
-    status: enum:draft,published
+    status: enum:draft,sent
     content: longtext
     filters: json
     sequence_id: bigInteger unsigned
     schedule_id: bigInteger unsigned
     relationships:
-      belongsTo: Sequence, Schedule
+      belongsTo: Sequence, Schedule, User
   Schedule:
     delay: integer unsigned
     unit: enum:hour,day

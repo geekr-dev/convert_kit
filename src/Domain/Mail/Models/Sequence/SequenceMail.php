@@ -2,10 +2,19 @@
 
 namespace Domain\Mail\Models\Sequence;
 
+use Domain\Mail\DTOs\Sequence\SequenceMailData;
+use Domain\Mail\Enums\Sequence\SequenceMailStatus;
+use Domain\Mail\Models\Casts\FilterCast;
 use Domain\Shared\Models\BaseModel;
+use Domain\Shared\Models\Concerns\HasUser;
+use Spatie\LaravelData\WithData;
 
 class SequenceMail extends BaseModel
 {
+    use WithData, HasUser;
+
+    protected $dataClass = SequenceMailData::class;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -13,11 +22,8 @@ class SequenceMail extends BaseModel
      */
     protected $fillable = [
         'subject',
-        'status',
         'content',
         'filters',
-        'sequence_id',
-        'schedule_id',
     ];
 
     /**
@@ -26,10 +32,8 @@ class SequenceMail extends BaseModel
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'filters' => 'array',
-        'sequence_id' => 'integer',
-        'schedule_id' => 'integer',
+        'filters' => FilterCast::class,
+        'status' => SequenceMailStatus::class,
     ];
 
     public function sequence()
