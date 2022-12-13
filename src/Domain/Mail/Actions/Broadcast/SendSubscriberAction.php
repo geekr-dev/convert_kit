@@ -5,7 +5,6 @@ namespace Domain\Mail\Actions\Broadcast;
 use Domain\Mail\Exceptions\Broadcast\CannotSendBroadcast;
 use Domain\Mail\Mails\EchoMail;
 use Domain\Mail\Models\Broadcast\Broadcast;
-use Domain\Subscriber\Actions\FilterSubscribersAction;
 use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,7 +20,7 @@ class SendBroadcastAction
         }
 
         // 筛选订阅用户，然后挨个发送邮件
-        $subscribers = FilterSubscribersAction::execute($broadcast)
+        $subscribers = $broadcast->audience()
             ->each(
                 fn (Subscriber $subscriber) =>
                 Mail::to($subscriber)->queue(new EchoMail($broadcast))

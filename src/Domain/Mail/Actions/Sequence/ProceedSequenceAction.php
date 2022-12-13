@@ -5,7 +5,6 @@ namespace Domain\Mail\Actions\Sequence;
 use Domain\Mail\Mails\EchoMail;
 use Domain\Mail\Models\Sequence\Sequence;
 use Domain\Mail\Models\Sequence\SequenceMail;
-use Domain\Subscriber\Actions\FilterSubscribersAction;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
@@ -41,7 +40,7 @@ class ProceedSequenceAction
             return;
         }
 
-        return FilterSubscribersAction::execute($mail)
+        return $mail->audience()
             ->reject->alreadyReceived($mail)  // 过滤掉其中已收到邮件的订阅用户
             ->reject->tooEarlyFor($mail);     // 过滤掉其中还没到时间的订阅用户
     }

@@ -11,12 +11,15 @@ use Domain\Mail\Models\Casts\FilterCast;
 use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
+use Domain\Subscriber\Models\Concerns\HasAudience;
+use Domain\Subscriber\Models\Subscriber;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Spatie\LaravelData\WithData;
 use Illuminate\Support\Str;
 
 class SequenceMail extends BaseModel implements Sendable
 {
-    use WithData, HasUser;
+    use WithData, HasUser, HasAudience;
 
     protected $dataClass = SequenceMailData::class;
 
@@ -61,14 +64,22 @@ class SequenceMail extends BaseModel implements Sendable
         return $this->content;
     }
 
-    public function sequence()
-    {
-        return $this->belongsTo(Sequence::class);
-    }
-
     public function filters(): FilterData
     {
         return $this->filters;
+    }
+
+    public function audienceQuery(): Builder
+    {
+        return Subscriber::whereIn(
+            'id',
+            $this->sequence->subscribers()->select('subscribers.id')->pluck('id')
+        );
+    }
+
+    public function sequence()
+    {
+        return $this->belongsTo(Sequence::class);
     }
 
     public function schedule()

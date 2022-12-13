@@ -11,13 +11,14 @@ use Domain\Mail\Models\Casts\FilterCast;
 use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Domain\Subscriber\Models\Concerns\HasAudience;
+use Domain\Subscriber\Models\Subscriber;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Spatie\LaravelData\WithData;
 
 class Broadcast extends BaseModel implements Sendable
 {
-    use WithData;
-    use HasUser;
+    use WithData, HasUser, HasAudience;
 
     protected $dataClass = BroadcastData::class;
 
@@ -71,6 +72,11 @@ class Broadcast extends BaseModel implements Sendable
     public function filters(): FilterData
     {
         return $this->filters;
+    }
+
+    public function audienceQuery(): Builder
+    {
+        return Subscriber::query();
     }
 
     public function sentMails()
