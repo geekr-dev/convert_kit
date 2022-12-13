@@ -27,7 +27,7 @@ class Broadcast extends BaseModel implements Sendable
      * @var array
      */
     protected $fillable = [
-        'title',
+        'subject',
         'content',
         'filters',
         'status',
@@ -57,6 +57,17 @@ class Broadcast extends BaseModel implements Sendable
     {
         return $this::class;
     }
+
+    public function subject(): string
+    {
+        return $this->subject;
+    }
+
+    public function content(): string
+    {
+        return $this->content;
+    }
+
 
     public function sentMails()
     {

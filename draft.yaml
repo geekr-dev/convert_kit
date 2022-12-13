@@ -17,7 +17,7 @@ models:
     relationships:
       hasMany: Subscriber
   Broadcast:
-    title: string:100
+    subject: string:100
     content: longtext
     filters: json
     status: enum:draft,sent
@@ -28,6 +28,7 @@ models:
     title: string:100
     status: enum:draft,published
     relationships:
+      belongsTo: User
       hasMany: SequenceMail
   SequenceMail:
     subject: string:100

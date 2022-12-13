@@ -24,7 +24,7 @@ class SequenceMailFactory extends Factory
     {
         return [
             'subject' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'status' => $this->faker->randomElement(["draft","published"]),
+            'status' => $this->faker->randomElement(["draft", "published"]),
             'content' => $this->faker->paragraphs(3, true),
             'filters' => '{}',
             'sequence_id' => $this->faker->randomNumber(),

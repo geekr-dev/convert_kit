@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('broadcasts', BroadcastController::class);
     Route::post('broadcasts/{broadcast}/send', SendBroadcastController::class);
-    Route::post('broadcasts/{broadcast}/preview', PreviewBroadcastController::class);
+    Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class)->name('broadcasts.preview');
 });
 
 

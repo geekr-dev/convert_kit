@@ -27,6 +27,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
-        Auth::loginUsingId(1);
+        // Auth::loginUsingId(1);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Database\Factories\Mail;
 
+use Domain\Mail\Models\Broadcast\Broadcast;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Broadcast;
 
 class BroadcastFactory extends Factory
 {
@@ -23,11 +23,15 @@ class BroadcastFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(4),
+            'subject' => $this->faker->sentence(4),
             'content' => $this->faker->paragraphs(3, true),
-            'filters' => '{}',
-            'status' => $this->faker->randomElement(["draft","published"]),
+            'filters' => [
+                'form_ids' => $this->faker->randomElements(range(1, 10), $this->faker->randomElement(range(1, 2))),
+                'tags_ids' => $this->faker->randomElements(range(1, 100), $this->faker->randomElement(range(2, 5))),
+            ],
+            'status' => $this->faker->randomElement(["draft", "sent"]),
             'sent_at' => $this->faker->dateTime(),
+            'user_id' => $this->faker->randomNumber(),
         ];
     }
 }

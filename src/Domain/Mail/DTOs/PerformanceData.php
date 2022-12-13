@@ -8,9 +8,9 @@ use Spatie\LaravelData\Data;
 class PerformanceData extends Data
 {
     public function __construct(
-        private readonly int $total,
-        private readonly Percent $openRate,
-        private readonly Percent $clickRate,
+        public readonly int $total,
+        public readonly Percent $openRate,
+        public readonly Percent $clickRate,
     ) {
     }
 }

@@ -4,9 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Domain\Mail\Models\Broadcast\Broadcast;
+use Domain\Shared\Models\User;
 use Domain\Subscriber\Models\Form;
+use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
 use Illuminate\Database\Seeder;
+use stdClass;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +28,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Form::factory()->count(50)->create();
+        User::factory()->create([
+            'email' => 'test@test.com',
+        ]);
+
+        Form::factory()->count(10)->create();
         Tag::factory()->count(100)->create();
+
+        Subscriber::factory()->count(500)->create([
+            'user_id' => 1
+        ]);
+        Broadcast::factory()->count(100)->create([
+            'user_id' => 1,
+        ]);
     }
 }

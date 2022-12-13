@@ -24,7 +24,7 @@ class SequenceFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'status' => $this->faker->randomElement(["draft","published"]),
+            'status' => $this->faker->randomElement(["draft", "published"]),
         ];
     }
 }

@@ -25,6 +25,8 @@ class SubscriberFactory extends Factory
             'email' => $this->faker->safeEmail,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
+            'user_id' => $this->faker->randomNumber(),
+            'form_id' => $this->faker->randomNumber(),
         ];
     }
 }

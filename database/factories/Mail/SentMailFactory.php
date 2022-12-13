@@ -2,9 +2,9 @@
 
 namespace Database\Factories\Mail;
 
+use Domain\Mail\Models\SentMail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\SentMail;
 
 class SentMailFactory extends Factory
 {

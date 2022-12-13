@@ -15,7 +15,7 @@ class Percent
 
     public static function from(float $numerator, float $denominator): self
     {
-        if ($denominator === 0) {
+        if ($denominator == 0) {
             return new self(0);
         }
 

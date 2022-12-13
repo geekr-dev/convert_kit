@@ -22,7 +22,7 @@ class BroadcastController
     public function index(Request $request)
     {
         return Inertia::render('Broadcast/List', [
-            'model' => new GetBroadcastsViewModel($request->get('page', 1)),
+            'model' => new GetBroadcastsViewModel(),
         ]);
     }
 
