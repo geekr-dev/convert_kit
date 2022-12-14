@@ -8,18 +8,20 @@ use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\DTOs\Sequence\SequenceMailData;
 use Domain\Mail\Enums\Sequence\SequenceMailStatus;
 use Domain\Mail\Models\Casts\FilterCast;
+use Domain\Mail\Models\Concerns\HasPerformance;
 use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
 use Domain\Subscriber\Models\Concerns\HasAudience;
 use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelData\WithData;
 use Illuminate\Support\Str;
 
 class SequenceMail extends BaseModel implements Sendable
 {
-    use WithData, HasUser, HasAudience;
+    use WithData, HasUser, HasAudience, HasPerformance;
 
     protected $dataClass = SequenceMailData::class;
 
@@ -69,6 +71,11 @@ class SequenceMail extends BaseModel implements Sendable
         return $this->filters;
     }
 
+    public function totalInstances(): int
+    {
+        return SentMail::countOf($this);
+    }
+
     public function audienceQuery(): Builder
     {
         return Subscriber::whereIn(
@@ -87,7 +94,7 @@ class SequenceMail extends BaseModel implements Sendable
         return $this->belongsTo(Schedule::class);
     }
 
-    public function sentMails()
+    public function sentMails(): Relation
     {
         return $this->morphMany(SentMail::class, 'sendable');
     }

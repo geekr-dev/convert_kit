@@ -24,7 +24,7 @@ class GetBroadcastsViewModel extends ViewModel
     public function performances(): Collection
     {
         return Broadcast::all()->mapWithKeys(fn (Broadcast $broadcast) => [
-            $broadcast->id => GetPerformanceAction::execute($broadcast)
+            $broadcast->id => $broadcast->performance()
         ]);
     }
 }
