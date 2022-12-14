@@ -2,7 +2,6 @@
 
 namespace Domain\Mail\DTOs\Broadcast;
 
-use Carbon\Carbon;
 use Domain\Mail\DTOs\FilterData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Spatie\LaravelData\Data;

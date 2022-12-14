@@ -63,10 +63,11 @@ models:
   Automation:
     name: string:100
     relationships:
+      belongsTo: User
       hasMany: AutomationStep
   AutomationStep:
     automation_id: bigInteger unsigned
-    type: enum:type,action
+    type: enum:event,action
     name: string:50
     value: json
     relationships:
