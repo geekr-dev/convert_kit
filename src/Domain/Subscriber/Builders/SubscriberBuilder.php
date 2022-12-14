@@ -3,6 +3,7 @@
 namespace Domain\Subscriber\Builders;
 
 use Domain\Mail\Models\Sequence\SequenceMail;
+use Domain\Shared\Filters\DateFilter;
 use Illuminate\Database\Eloquent\Builder;
 
 class SubscriberBuilder extends Builder
@@ -12,5 +13,13 @@ class SubscriberBuilder extends Builder
         return $this->model->receivedMails
             ->whereSendable($mail)
             ->exists();
+    }
+
+    public function whereSubscribedBetween(DateFilter $dateFilter): self
+    {
+        return $this->whereBetween(
+            'subscribed_at',
+            $dateFilter->toArray()
+        );
     }
 }
