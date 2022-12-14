@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('sequence_id');
             $table->foreignId('subscriber_id');
             $table->dateTime('subscribed_at')->useCurrent();
-            $table->enum('status', ["pending", "finished"])->nullable();
+            $table->enum('status', ["in_process", "completed"])->nullable();
         });
     }
 

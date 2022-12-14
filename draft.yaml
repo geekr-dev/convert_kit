@@ -38,6 +38,13 @@ models:
     schedule_id: bigInteger unsigned
     relationships:
       belongsTo: Sequence, Schedule, User
+  SequenceSubscriber:
+    sequence_id: bigInteger unsigned
+    subscriber_id: bigInteger unsigned
+    subscribed_at: timestamp nullable
+    status: enum:in_progress,completed
+    relationships:
+      belongsTo: Sequence
   Schedule:
     delay: integer unsigned
     unit: enum:hour,day

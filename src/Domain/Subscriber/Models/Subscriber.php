@@ -2,6 +2,7 @@
 
 namespace Domain\Subscriber\Models;
 
+use Domain\Mail\Models\Sequence\Sequence;
 use Domain\Mail\Models\Sequence\SequenceMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
@@ -57,6 +58,11 @@ class Subscriber extends BaseModel
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function sequence()
+    {
+        return $this->belongsToMany(Sequence::class);
     }
 
     public function fullName(): Attribute
