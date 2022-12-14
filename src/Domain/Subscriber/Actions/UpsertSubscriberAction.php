@@ -20,9 +20,16 @@ class UpsertSubscriberAction
                 'user_id' => $user->id,
             ]
         );
+
         $subscriber->tags()->sync(
             $data->tags->toCollection()->pluck('id')
         );
+
+        // 只有订阅用户第一次创建时触发
+        if (!$data->id && $data->form) {
+            event(new SubscribedToFormEvent($subscriber, $$user));
+        }
+
         return $subscriber->load('tags', 'form');
     }
 }

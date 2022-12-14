@@ -51,7 +51,7 @@ class UpsertAutomationAction
                 'id' => $data->event->id
             ],
             [
-                'type' => AutomationStepType::EVENT,
+                'type' => AutomationStepType::Event,
                 'name' => $data->event->name,
                 'value' => ['id' => $data->event->value],
             ]
@@ -67,7 +67,7 @@ class UpsertAutomationAction
                     'id' => $stepData->id,
                 ],
                 [
-                    'type' => AutomationStepType::ACTION,
+                    'type' => AutomationStepType::Action,
                     'name' => $stepData->name,
                     'value' => ['id' => $stepData->value],
                 ]

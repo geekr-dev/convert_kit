@@ -4,6 +4,6 @@ namespace Domain\Automation\Enums;
 
 enum AutomationStepType: string
 {
-    case EVENT = 'event';
-    case ACTION = 'action';
+    case Event = 'event';
+    case Action = 'action';
 }
