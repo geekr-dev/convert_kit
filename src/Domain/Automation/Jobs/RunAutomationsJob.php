@@ -2,7 +2,7 @@
 
 namespace Domain\Automation\Jobs;
 
-use Domain\Automation\Actions\Events;
+use Domain\Automation\Enums\Events;
 use Domain\Automation\Actions\RunAutomationsAction;
 use Domain\Shared\Models\User;
 use Domain\Subscriber\Models\Subscriber;

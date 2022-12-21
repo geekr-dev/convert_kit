@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Automation\Actions;
+namespace Domain\Automation\Enums;
 
 enum Events: string
 {

@@ -2,6 +2,7 @@
 
 namespace Domain\Subscriber\Actions;
 
+use Domain\Automation\Events\SubscribedToFormEvent;
 use Domain\Shared\Models\User;
 use Domain\Subscriber\DTOs\SubscriberData;
 use Domain\Subscriber\Models\Subscriber;

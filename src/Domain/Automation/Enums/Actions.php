@@ -1,6 +1,9 @@
 <?php
 
-namespace Domain\Automation\Actions;
+namespace Domain\Automation\Enums;
+
+use Domain\Automation\Actions\Steps\AddTagAction;
+use Domain\Automation\Actions\Steps\AddToSequenceAction;
 
 enum Actions: string
 {
